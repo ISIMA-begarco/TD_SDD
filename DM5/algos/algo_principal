@@ -25,10 +25,12 @@ Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
 		Fin Si
 		
 		Si non(vide(pile)) Alors
-			m(cour) := depiler(pile);
-			m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
-			
-			m(level) := cm(level) - 1 ;
+			Tant que non(vide(pile)) ET ALORS cm(cour) = NIL Faire
+				m(cour) := depiler(pile);
+				m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
+				
+				m(level) := cm(level) - 1 ;
+			Fin Tant que
 		Sinon
 			m(fin) := vrai ;
 		Fin Si
