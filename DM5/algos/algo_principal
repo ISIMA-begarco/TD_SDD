@@ -1,0 +1,38 @@
+Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
+	m(pile) := init(taille) ;
+	
+	m(cour) := cm(a) ;
+	m(fin) := faux ;
+	
+	m(max) := 0 ; [hauteur max trouvée]
+	m(level) := 0 ; [compteur de hauteur]
+	m(noeud) := 0 ; [calcul du nombre de noeuds]
+	
+	Tant que non(cm(fin)) Faire
+		Tant que cm(cour) != NIL Faire
+			empiler(pile, cm(cour)) ;
+			m(cour) := cm(cm(cour) + 1) ; [va sur le lien vertical]
+			
+			Si cm(cour) != NIL Alors
+				m(noeud) := cm(noeud) + 1 ;
+			Fin Si
+			
+			m(level) := cm(level) + 1 ; [compte un niveau de plus]
+		Fin Tant que
+		
+		Si cm(level) > cm(max) Alors [modification de maximum]
+			m(max) := cm(level) ;
+		Fin Si
+		
+		Si non(vide(pile)) Alors
+			m(cour) := depiler(pile);
+			m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
+			
+			m(level) := cm(level) - 1 ;
+		Sinon
+			m(fin) := vrai ;
+		Fin Si
+		
+	Fin Tant que
+
+Fin
