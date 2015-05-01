@@ -25,7 +25,7 @@ Principe :
 Fin
 	
 Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
-	m(pile) := init(taille) ;
+	m(pile) := init(taille/2) ; [le nombre de feuille represente au moins la moitié de l'arbre]
 	m(cour) := cm(a) ;
 	
 	m(max) := 0 ; [hauteur max]
@@ -37,10 +37,10 @@ Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
 			empiler(pile, cm(cour)) ;
 			m(cour) := cm(cm(cour) + 1) ; [va sur le lien vertical]
 			
+			[on peut éviter ce SI en n'empiilant pas les feuilles]
 			Si cm(cour) != NIL Alors
 				m(noeud) := cm(noeud) + 1 ;
 			Fin Si
-			
 			m(level) := cm(level) + 1 ; [compte un niveau de plus]
 		Fin Tant que
 		
@@ -48,6 +48,7 @@ Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
 			m(max) := cm(level) ;
 		Fin Si
 		
+		[pourquoi un ET ALORS ?]
 		Tant que non(vide(pile)) ET ALORS cm(cour) = NIL Faire [depile tant que pas de lien horizontal]
 			m(cour) := depiler(pile);
 			m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
