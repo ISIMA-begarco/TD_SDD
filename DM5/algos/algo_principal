@@ -1,14 +1,38 @@
+Principe :
+	Tant que la pile n'est pas vide et que l'élement courant n'est pas NIL [il y a encore des éléments à traiter]
+		Tant que l'élément courant n'est pas NIL [on peut toujours descendre d'un niveau]
+			On l'empile [pour aller sur ses liens horizontaux plus tard]
+			On passe sur son lien vertical
+			
+			Si ce lien vertical n'est pas NIL Alors [on a un noeud]
+				On compte un noeud en plus
+			Fin Si
+			On compte un niveau d'arbre en plus
+		Fin Tant que
+		
+		On compare le niveau actuel de l'arbre avec le maximum que l'on a pour le moment
+		Si le niveau d'arbre actuel est plus grand que notre niveau max Alors
+			Le max prend la valeur du niveau actuel
+		Fin Si
+		
+		Tant que la pile n'est pas vide et que l'élement courant n'a pas de lien horizontal Faire
+			On dépile un élément dans courant
+			On passe à son lien horizontal
+	
+			On compte un niveau d'arbre en moins
+		Fin Tant que
+	Fin Tant que
+Fin
+	
 Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
 	m(pile) := init(taille) ;
-	
 	m(cour) := cm(a) ;
-	m(fin) := faux ;
 	
-	m(max) := 0 ; [hauteur max trouvée]
+	m(max) := 0 ; [hauteur max]
 	m(level) := 0 ; [compteur de hauteur]
 	m(noeud) := 0 ; [calcul du nombre de noeuds]
 	
-	Tant que non(cm(fin)) Faire
+	Tant que non(vide(pile)) OU ALORS cm(cour) != NIL Faire
 		Tant que cm(cour) != NIL Faire
 			empiler(pile, cm(cour)) ;
 			m(cour) := cm(cm(cour) + 1) ; [va sur le lien vertical]
@@ -24,17 +48,11 @@ Proc hauteur_nbnoeud(e: a, taille, e/s: max, noeud)
 			m(max) := cm(level) ;
 		Fin Si
 		
-		Si non(vide(pile)) Alors
-			Tant que non(vide(pile)) ET ALORS cm(cour) = NIL Faire
-				m(cour) := depiler(pile);
-				m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
-				
-				m(level) := cm(level) - 1 ;
-			Fin Tant que
-		Sinon
-			m(fin) := vrai ;
-		Fin Si
-		
+		Tant que non(vide(pile)) ET ALORS cm(cour) = NIL Faire [depile tant que pas de lien horizontal]
+			m(cour) := depiler(pile);
+			m(cour) := cm(cm(cour) + 2) ; [va sur le lien horizontal]
+			
+			m(level) := cm(level) - 1 ;
+		Fin Tant que
 	Fin Tant que
-
 Fin
