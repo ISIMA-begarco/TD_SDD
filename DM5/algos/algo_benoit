@@ -1,0 +1,34 @@
+procedure ANALYSE_ARBRE(e : arb, taille ; s : nbNoeud, hauteur)
+	m(pile) := init(taile/2);
+	m(cour) := cm(arb);
+	m(hauteur) := 0;
+	m(hauteurTMP) := 0;
+	m(nbNoeud) := 0;
+	Tant que cm(cour) != NIL faire
+		m(nbNoeud) := cm(nbNoeud)+1;
+		Tant que cm(cm(cour)+1) != NIL faire
+			empiler(cm(cour));
+			m(cour) := cm(cm(cour)+1);
+			m(hauteurTMP) := cm(hauteurTMP)+1;
+			m(nbNoeud) := cm(nbNoeud)+1;
+		fait;
+		Si cm(hauteurTMP) >= cm(hauteur) alors
+			m(hauteur) := cm(hauteurTMP)+1;
+		fsi;
+		m(cour) := cm(cm(cour)+2);
+		Tant que cm(cour) = NIL ET non(vide(pile)) faire
+			m(cour) := depiler(pile);
+			m(cour) := cm(cm(cour)+2);
+			m(hauteurTMP) := cm(hauteurTMP)-1;
+		fait;
+	fait;
+FIN
+
+Lexique :
+pile : adresse du pointeur sur une structure pile pour le parcours de l'arbre
+arb : adresse du pointeur sur l'arbre
+taille : entier representant le nombre d'elements dans l'arbre
+nbNoeud : adresse de l'entier representant le nombre de noeuds (racines et noeuds internes sans les feuilles)
+hauteur : adresse de l'entier representant le nombre maximal de niveaux dans l'arbre
+hauteurTMP : adresse de l'entier pour le calcul de la hauteur
+cour : adresse du pointeur sur le noeud courant de l'arbre
