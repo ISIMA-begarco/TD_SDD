@@ -5,7 +5,6 @@ procedure ANALYSE_ARBRE(e : arb, taille ; s : nbNoeud, hauteur)
 	m(hauteurTMP) := 0;
 	m(nbNoeud) := 0;
 	Tant que cm(cour) != NIL faire
-		m(nbNoeud) := cm(nbNoeud)+1;
 		Tant que cm(cm(cour)+1) != NIL faire
 			empiler(cm(cour));
 			m(cour) := cm(cm(cour)+1);
